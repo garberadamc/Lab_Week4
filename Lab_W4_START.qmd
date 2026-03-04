@@ -30,7 +30,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 ```{r}
 
-#### RUN CODE BLOCK (green triangle right hand corner of grey box) >>>>>
+# Don't forget to load libraries! ( ▶️ )
 
 library(psych)
 library(tidyverse)
@@ -38,6 +38,7 @@ library(janitor)
 library(here)
 library(sjPlot)
 library(GGally)
+library(corrplot)
 library(reshape2)
 
 ```
@@ -185,7 +186,7 @@ tab_corr(
   triangle    = "lower",
   digits      = 2,
   show.p      = TRUE,
-  p.numeric   = TRUE,  # (p-value) printed under correlation coeff.
+  p.numeric   = TRUE,  # print (p-value) / (*) notation use 'FALSE' 
   title = "Age range: 18 - 20 (Sample size = 310)"
 )
 
@@ -239,6 +240,26 @@ tab_corr(
 **Question 4:** Compare significant correlations (column 1) with the previous table: What changed across the two samples?
 
 **Response:** __________________________________________
+
+
+------------------------------------------------------------------------
+
+### Visualize correltation strength and direction using `corrplot()`
+
+------------------------------------------------------------------------
+
+```{r}
+corr_matrix <- cor(cor_30_60, use = "pairwise.complete.obs", method = "pearson")
+
+corrplot(
+  corr_matrix, 
+  method = "number", # options [method = "number", or "circle"] 
+  type = "upper", diag = FALSE,       
+  tl.col = "black", tl.srt = 35)
+
+?corrplot()
+```
+
 
 ------------------------------------------------------------------------
 
