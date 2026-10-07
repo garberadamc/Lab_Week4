@@ -1,5 +1,4 @@
 
-
 # install
 
 install.packages("psych")

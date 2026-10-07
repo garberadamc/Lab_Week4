@@ -95,7 +95,6 @@ activity_data <-
 
 Split the sample by age range by making 3 data.frames
 ```{r}
-
 make_corr_data <- function(min_age, max_age) {
   activity_data %>% 
     filter(age_years >= min_age & age_years <= max_age) %>% 
@@ -104,8 +103,10 @@ make_corr_data <- function(min_age, max_age) {
       contains(c("outdoors_", "walk_or_bike_days", "days", "sleep_hours"))) %>%
     mutate(across(where(~ is.character(.x) | is.factor(.x)), ~ as.numeric(as.factor(.x)))) 
 }
+```
 
-# Create separate data frames, splitting the sample by age group 
+Create 3 separate data frames, splitting the sample by age group:
+```{r}
 
 cor_18_20 <- make_corr_data(***, ***)
 cor_18_24 <- make_corr_data(***, ***)
@@ -186,7 +187,7 @@ tab_corr(
   triangle    = "lower",
   digits      = 2,
   show.p      = TRUE,
-  p.numeric   = TRUE,  # print (p-value) / (*) notation use 'FALSE' 
+  p.numeric   = TRUE,  # print p-value 
   title = "Age range: 18 - 20 (Sample size = 310)"
 )
 
@@ -200,6 +201,9 @@ tab_corr(
 **Question 2:** Why is the correlation for `depression_scale` & `outdoors_nonwork` marked as not significant?
 
 **Response:** __________________________________________
+
+
+------------------------------------------------------------------------
 
 Correlations for survey respondents ages 18 - 24
 ```{r}
@@ -220,6 +224,8 @@ tab_corr(
 **Question 3:** What are two reasons which can explain why the correlations are now significant in this new sample (column 1)?
 
 **Response:** __________________________________________
+
+------------------------------------------------------------------------
 
 Correlations for survey respondents ages 30 - 60
 ```{r}
@@ -282,5 +288,13 @@ activity_data %>%
 **Question:** Do you think the NHANES survey data has any selection bias?
 
 **Response:** __________________________________________
+
+------------------------------------------------------------------------
+
+### Practice rendering the Quarto document - Create an HTML file displaying all plots & code!
+
+> Try clicking ‘Render’ in the top menu (Note: All code must be completed to successfully render)
+
+------------------------------------------------------------------------
 
 
